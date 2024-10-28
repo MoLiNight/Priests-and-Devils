@@ -32,6 +32,8 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
 
 ## 二、游戏设计 
 
+
+
 ## 三、游戏对象 
 
 该游戏的项目结构，游戏对象与场景效果如下图所示： 
@@ -39,18 +41,5 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
 ![Image](./word/media/image1.png)
 
 ![Image](./word/media/image2.png)
-
-![Image](./word/media/image3.png)
-
-![Image](./word/media/image4.png)
-![Image](./word/media/image5.png)
-
-![Image](./word/media/image6.png)
-
-![Image](./word/media/image7.png)
-
-![Image](./word/media/image8.png)
-
-![Image](./word/media/image9.png)
 
 ## 四、游戏实现 
