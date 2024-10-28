@@ -92,8 +92,8 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
       boat.transform.position = boatPosition;
   
       l_ground = GameObject.Instantiate(Resources.Load("Prefabs/Ground", typeof(GameObject))) as GameObject;
-  	  r_ground = GameObject.Instantiate(Resources.Load("Prefabs/Ground", typeof(GameObject))) as GameObject;
-  	  l_ground.transform.position = groundPosition[0];
+      r_ground = GameObject.Instantiate(Resources.Load("Prefabs/Ground", typeof(GameObject))) as GameObject;
+      l_ground.transform.position = groundPosition[0];
       r_ground.transform.position = groundPosition[1];
   
       isMoving = false;
