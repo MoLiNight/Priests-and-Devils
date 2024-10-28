@@ -193,12 +193,12 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
 ```
 
    3. ClickableObject
-
 ```cs
   using UnityEngine;
   
   public class ClickableObject : MonoBehaviour
   {
+      // Ensure data interoperability
       private FirstController firstController = (FirstController)SSDirector.getInstance().currentSceneController;
   
       void Update()
@@ -260,22 +260,24 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
       public Dictionary<int, RoleMessage> roleDict = new Dictionary<int, RoleMessage>();
   
       // the first scripts
-      void Awake () {
-  		SSDirector director = SSDirector.getInstance ();
+      void Awake ()
+      {
+          SSDirector director = SSDirector.getInstance ();
           director.setFPS (60);
-  		director.currentSceneController = this;
+          director.currentSceneController = this;
           director.currentSceneController.LoadResources ();
           Debug.Log ("awake FirstController!");
-  	}
+      }
   
-  	// loading resources for first scence
-  	public void LoadResources () {
+      // loading resources for first scence
+      public void LoadResources ()
+      {
           boat = GameObject.Instantiate(Resources.Load("Prefabs/Boat", typeof(GameObject))) as GameObject;
           boat.transform.position = boatPosition;
   
           l_ground = GameObject.Instantiate(Resources.Load("Prefabs/Ground", typeof(GameObject))) as GameObject;
-  		r_ground = GameObject.Instantiate(Resources.Load("Prefabs/Ground", typeof(GameObject))) as GameObject;
-  		l_ground.transform.position = groundPosition[0];
+          r_ground = GameObject.Instantiate(Resources.Load("Prefabs/Ground", typeof(GameObject))) as GameObject;
+          l_ground.transform.position = groundPosition[0];
           r_ground.transform.position = groundPosition[1];
   
           isMoving = false;
@@ -291,15 +293,15 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
           }
       }
   
-  	public void Pause ()
-  	{
-  		throw new System.NotImplementedException ();
-  	}
-  
-  	public void Resume ()
-  	{
-  		throw new System.NotImplementedException ();
-  	}
+      public void Pause ()
+      {
+          throw new System.NotImplementedException ();
+      }
+      
+      public void Resume ()
+      {
+          throw new System.NotImplementedException ();
+      }
   
       public void Check()
       {
@@ -336,10 +338,12 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
           }
   
           // Debug.Log(string.Format("l_devils: {0},l_priests: {1},r_devils: {2},r_priests: {3}", l_devils, l_priests, r_devils, r_priests));
+
           if ((r_priests == 3 && r_devils == 3))
           {
               GameObject winCanvas = GameObject.Instantiate(Resources.Load("Prefabs/WinCanvas", typeof(GameObject))) as GameObject;
           }
+
           if ((l_devils > l_priests && l_priests != 0) || (r_devils > r_priests && r_priests != 0))
           {
               GameObject loseCanvas = GameObject.Instantiate(Resources.Load("Prefabs/LoseCanvas", typeof(GameObject))) as GameObject;
@@ -367,9 +371,12 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
               targetX = 1;
               boatOnLeft = true;
           }
-          
+
+          // Move the boat
           CCMoveToAction moveAction = CCMoveToAction.GetSSAction(new Vector3(targetX, -2, -20), 5);
           actionManager.RunAction(boat, moveAction, actionManager);
+
+          // Move the roles on the boat 
           for (int i = 0; i < 2; i++)
           {
               if (boatRole[i] != 0)
@@ -389,6 +396,7 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
           {
               return;
           }
+
           // Judge if the priest or the devil can get on board
           if ((boatOnLeft && role.transform.position.x < -3) || (!boatOnLeft && role.transform.position.x > 3))
           {
@@ -404,7 +412,8 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
           if (role.transform.position.y == 0.65f)
           {
               targetY = -0.85f;
-              if (boatRole[0] == 0)
+
+              if (boatRole[0] == 0)  // Boat space 0 is empty
               {
                   if (boatOnLeft)
                   {
@@ -413,7 +422,7 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
                   boatRole[0] = role.GetInstanceID();
                   roleDict[boatRole[0]].rolePosition = 0;
               }
-              else if (boatRole[1] == 0)
+              else if (boatRole[1] == 0)  // Boat space 1 is empty
               {
                   if (!boatOnLeft)
                   {
@@ -422,12 +431,13 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
                   boatRole[1] = role.GetInstanceID();
                   roleDict[boatRole[1]].rolePosition = 0;
               }
-              else
+              else // The boat is full
               {
                   return;
               }
           }
           else
+          // The priest or the devil is on the boat
           {
               int index = roleDict[role.GetInstanceID()].sequenceIndex;
               if (index > 3)
@@ -440,12 +450,14 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
               }
               if (boatOnLeft)
               {
+                  // This role is located at position 0
                   if (role.transform.position.x == 2)
                   {
                       roleDict[boatRole[0]].rolePosition = 1;
                       boatRole[0] = 0;
                   }
                   else
+                  // This role is located at position 1
                   {
                       roleDict[boatRole[1]].rolePosition = 1;
                       boatRole[1] = 0;
@@ -466,6 +478,7 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
                   }
               }
           }
+
           CCMoveToAction moveUp = CCMoveToAction.GetSSAction(new Vector3(role.transform.position.x, 2.65f, -20), 5);
           CCMoveToAction moveFowaard = CCMoveToAction.GetSSAction(new Vector3(targetX, 2.65f, -20), 10);
           CCMoveToAction moveDown = CCMoveToAction.GetSSAction(new Vector3(targetX, targetY, -20), 5);
@@ -476,20 +489,22 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
       }
   
       public void GameOver ()
-  	{
-          SSDirector.getInstance ().NextScene ();
-  	}
-  	#endregion
-  
-  	// Use this for initialization
-  	void Start () {
+      {
+          SSDirector.getInstance().NextScene();
+      }
+      #endregion
+      
+      // Use this for initialization
+      void Start ()
+      {
           //give advice first
       }
-  	
-  	// Update is called once per frame
-  	void Update () {
+      
+      // Update is called once per frame
+      void Update ()
+      {
           //give advice first
-  	}
-  
+      }
+
   }
 ```
