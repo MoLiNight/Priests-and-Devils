@@ -44,16 +44,44 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
    | 点击船 | 没有任何对象处于运动状态 | 船移动到对岸 |
    | 点击船上的牧师或魔鬼 | 没有任何对象处于运动状态 | 牧师或魔鬼跳上船靠近的岸 |
 
-4. 请将游戏中对象做成预制;
+3. 请将游戏中对象做成预制;
 
-5. 在场景控制器 LoadResources 方法中加载并初始化长方形、正方形、球及其色彩代表游戏中的对象;
+4. 在场景控制器 LoadResources 方法中加载并初始化长方形、正方形、球及其色彩代表游戏中的对象;
 
-![Image](./word/media/image1.png)
+   该游戏项目的 Assets 的内容如下图所示：
+   
+   ![Image](./word/media/image1.png)
 
+5. 使用 C# 集合类型 有效组织对象;
 
+```cs
+  public class RoleMessage : MonoBehaviour
+  {
+      public string role;  // "Priest" or "Devil"
+      public int sequenceIndex;  // At the initial position, the priest's sequenceIndex value is 1 ~ 3, while the devil's sequenceIndex value is 4 ~ 6
+      public GameObject roleModel;
+      public int rolePosition = 1;  // 1 means the object is on the left bank, 0 means the object is on the ship, and -1 means the object is on the right bank
+  
+      public RoleMessage(int index, GameObject gameObject, string str)
+      {
+          role = str;
+          sequenceIndex = index;
+          roleModel = gameObject;
+      }
+  }
 
-![Image](./word/media/Main.png)
+  // Keys:GameObject.GetInstanceID()    Values:RoleMessage
+  public Dictionary<int, RoleMessage> roleDict = new Dictionary<int, RoleMessage>();
+```
 
-![Image](./word/media/image2.png)
+6. 整个游戏仅 主摄像机 和 一个 Empty 对象，其他对象必须代码动态生成！！！整个游戏不许出现 Find 游戏对象， SendMessage 这类突破程序结构的 通讯耦合 语句;
+
+   该游戏项目运行前后的如下图所示：
+   
+   ![Image](./word/media/image2.png)
+
+8. 请使用课件架构图编程，不接受非 MVC 结构程序;
+
+   ![Image](./word/media/Main.png)
 
 ## 三、游戏实现 
