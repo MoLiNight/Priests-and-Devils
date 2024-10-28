@@ -116,4 +116,51 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
 
    ![Image](./word/media/Main.png)
 
+8. 注意细节，例如：船未靠岸，牧师与魔鬼上下船运动中，均不能接受用户事件！
+
+   在 FirstController 类内设置 isMoving 变量，判断当前游戏中是否存在对象处于运动状态；
+
+```cs
+  // class FirstController
+  public bool isMoving = false;
+
+  #region IUserAction implementation
+  public void MoveBoat()
+  {
+      if (isMoving)
+      {
+          return;
+      }
+      isMoving = true;
+      ...
+  }
+  
+  public void MoveRole(GameObject role)
+  {
+      if (isMoving)
+      {
+          return;
+      }
+      ...
+      isMoving = true;
+      ...
+  }
+  #endregion
+```
+
+  在调用 FirstController 类内的 actionManager.RunAction() 函数后，玩家选择对象进入运动状态；
+  
+  在该对象运动完毕后，程序将自动调用 CCActionManager 类内的 SSActionEvent() 函数，因此，我们在该函数内进行 isMoving 变量的变量值的修改；
+
+```cs
+  // class CCActionManager
+  #region ISSActionCallback implementation
+  public void SSActionEvent (SSAction source, SSActionEventType events = SSActionEventType.Competeted, int intParam = 0, string strParam = null, Object objectParam = null)
+  {
+      sceneController.isMoving = false;
+      ...
+  }
+  #endregion
+```
+
 ## 三、游戏实现 
