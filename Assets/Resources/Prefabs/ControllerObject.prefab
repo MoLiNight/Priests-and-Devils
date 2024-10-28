@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &364456826628120314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 364456826628120316}
+  - component: {fileID: 7259429458238619940}
+  - component: {fileID: 6768880153160949871}
+  - component: {fileID: 364456826628120315}
+  m_Layer: 0
+  m_Name: ControllerObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &364456826628120316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364456826628120314}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3, y: -3, z: -20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7259429458238619940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364456826628120314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c3513f16804954a99fa0324b3e7639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6768880153160949871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364456826628120314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7007a1bf46a98584290365ba52bc509b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &364456826628120315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364456826628120314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34875d97ccfa2a9489190dfe6af3095d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move1: {fileID: 6580639365762318294, guid: 37445d0d2532ca04587271fcb09701de, type: 3}
+  move2: {fileID: 6580639365762318294, guid: 37445d0d2532ca04587271fcb09701de, type: 3}
+  boat: {fileID: 6580639365762318294, guid: 37445d0d2532ca04587271fcb09701de, type: 3}
+  canvas: {fileID: 164968713900573710, guid: 8606095c5b965a54a945be1b3478fb85, type: 3}
+  winNotice: {fileID: 164968713900573710, guid: 8606095c5b965a54a945be1b3478fb85, type: 3}
+  loseNotice: {fileID: 0}
+  isMoving: 0
+  boatRole: 0000000000000000
