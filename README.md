@@ -70,17 +70,49 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
       }
   }
 
+  // class FirstController
   // Keys:GameObject.GetInstanceID()    Values:RoleMessage
   public Dictionary<int, RoleMessage> roleDict = new Dictionary<int, RoleMessage>();
 ```
 
 6. 整个游戏仅 主摄像机 和 一个 Empty 对象，其他对象必须代码动态生成！！！整个游戏不许出现 Find 游戏对象， SendMessage 这类突破程序结构的 通讯耦合 语句;
 
-   该游戏项目运行前后的如下图所示：
+   该游戏项目运行前后的对象列表与游戏界面如下图所示：
    
    ![Image](./word/media/image2.png)
 
-8. 请使用课件架构图编程，不接受非 MVC 结构程序;
+   动态生成对象的代码如下：
+   
+```cs
+  // class FirstController
+  // loading resources for first scence
+  public void LoadResources ()
+  {
+      boat = GameObject.Instantiate(Resources.Load("Prefabs/Boat", typeof(GameObject))) as GameObject;
+      boat.transform.position = boatPosition;
+  
+      l_ground = GameObject.Instantiate(Resources.Load("Prefabs/Ground", typeof(GameObject))) as GameObject;
+  	  r_ground = GameObject.Instantiate(Resources.Load("Prefabs/Ground", typeof(GameObject))) as GameObject;
+  	  l_ground.transform.position = groundPosition[0];
+      r_ground.transform.position = groundPosition[1];
+  
+      isMoving = false;
+  
+      for (int i = 0; i < 3; i++)
+      {
+          GameObject devil = GameObject.Instantiate(Resources.Load("Prefabs/Devil", typeof(GameObject))) as GameObject;
+          GameObject priest = GameObject.Instantiate(Resources.Load("Prefabs/Priest", typeof(GameObject))) as GameObject;
+          devil.transform.position = devilsPosition[i];
+          priest.transform.position = priestsPosition[i];
+          roleDict.Add(devil.GetInstanceID(), new RoleMessage(i + 4, devil, "devil"));
+          roleDict.Add(priest.GetInstanceID(), new RoleMessage(i + 1, priest, "priest"));
+      }
+  }
+```
+
+7. 请使用课件架构图编程，不接受非 MVC 结构程序;
+
+   该游戏项目的UML图如下图所示：
 
    ![Image](./word/media/Main.png)
 
