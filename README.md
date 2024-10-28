@@ -32,7 +32,7 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
 
 ## 二、游戏设计 
 
-
+![Image](./word/media/Main.png)
 
 ## 三、游戏对象 
 
