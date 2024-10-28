@@ -165,3 +165,10 @@ Video URL：https://www.bilibili.com/video/BV1vW15YXE5z/
 
 ## 三、游戏实现 
 
+   1. 该游戏项目中各对象挂载的组件详情如下图所示：
+   
+   ![Image](./word/media/image3.png)
+
+   在该游戏项目中，ControllerObject 对象挂载的 FirstController 脚本内的 move1、move2 变量对程序运行并无影响，故可随意赋值；
+   
+   2. 
